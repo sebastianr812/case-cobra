@@ -18,7 +18,6 @@ export async function saveConfig({
     model,
     configId
 }: SaveConfigArgs) {
-
     await db.configuration.update({
         where: {
             id: configId
@@ -30,6 +29,5 @@ export async function saveConfig({
             model,
         }
     });
-
 }
 
