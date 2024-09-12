@@ -3,6 +3,8 @@ import { MaxWidthWrapper } from "./max-width-wrapper";
 import { buttonVariants } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+//TODO: update where we use getUser for kinde to clerk equivilent
+// modify navbar ui to use compoenents from clerk
 
 export const Navbar = async () => {
     const { getUser } = getKindeServerSession();
@@ -81,7 +83,7 @@ export const Navbar = async () => {
                     </div>
                 </div>
             </MaxWidthWrapper>
-        </nav>
+        </nav >
     );
 }
 

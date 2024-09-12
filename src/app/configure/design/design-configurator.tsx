@@ -6,7 +6,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn, formatPrice } from "@/lib/utils";
 import NextImage from "next/image";
 import { Rnd } from "react-rnd";
-import { Radio, RadioGroup, Label as RadioLabel, Description } from "@headlessui/react";
+import { RadioGroup } from '@headlessui/react'
 import { useRef, useState } from "react";
 import { COLORS, FINISHES, MATERIALS, MODELS } from "@/validators/option-validator";
 import { Label } from "@/components/ui/label";
@@ -239,12 +239,12 @@ export const DesignConfigurator = ({
                                     </Label>
                                     <div className="mt-3 flex items-center space-x-3">
                                         {COLORS.map((color) => (
-                                            <Radio
+                                            <RadioGroup.Option
                                                 key={color.label}
                                                 value={color}
-                                                className={({ checked, focus }) => cn(
+                                                className={({ checked, active }) => cn(
                                                     "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 active:ring-0 focus:ring-0 active:outline-none focus:outline-none border-2 border-transparent", {
-                                                    [`border-${color.tw}`]: focus || checked
+                                                    [`border-${color.tw}`]: active || checked
                                                 }
                                                 )}
                                             >
@@ -254,7 +254,7 @@ export const DesignConfigurator = ({
                                                     color.value === "blue" && "bg-blue-950",
                                                     color.value === "rose" && "bg-rose-950",
                                                 )} />
-                                            </Radio>
+                                            </RadioGroup.Option>
                                         ))}
                                     </div>
                                 </RadioGroup>
@@ -317,41 +317,41 @@ export const DesignConfigurator = ({
                                             </Label>
                                             <div className="mt-3 space-y-4">
                                                 {selectableOptions.map((opt) => (
-                                                    <Radio
+                                                    <RadioGroup.Option
                                                         key={opt.value}
                                                         value={opt}
-                                                        className={({ focus, checked }) => cn(
+                                                        className={({ active, checked }) => cn(
                                                             "relative block cursor-pointer rounded-lg bg-white px-6 py-4 shadow-sm border-2 border-zinc-200 focus:outline-none ring-0 focus:ring-0 outline-none sm:flex sm:justify-between", {
-                                                            "border-primary": checked || focus,
+                                                            "border-primary": checked || active,
                                                         }
                                                         )}
                                                     >
                                                         <span className="flex items-center">
                                                             <span className="flex flex-col text-sm">
-                                                                <RadioLabel
+                                                                <RadioGroup.Label
                                                                     className="font-medium text-gray-900"
                                                                     as="span">
                                                                     {opt.label}
-                                                                </RadioLabel>
+                                                                </RadioGroup.Label>
                                                                 {opt.description ? (
-                                                                    <Description
+                                                                    <RadioGroup.Description
                                                                         className="text-gray-500"
                                                                         as="span">
                                                                         <span className="block sm:inline">
                                                                             {opt.description}
                                                                         </span>
-                                                                    </Description>
+                                                                    </RadioGroup.Description>
                                                                 ) : null}
                                                             </span>
                                                         </span>
-                                                        <Description
+                                                        <RadioGroup.Description
                                                             className="mt-2 flex text-sm sm:ml-4 sm:mt-0 sm:flex-col sm:text-right"
                                                             as="span">
                                                             <span className="font-medium text-gray-900">
                                                                 {formatPrice(opt.price / 100)}
                                                             </span>
-                                                        </Description>
-                                                    </Radio>
+                                                        </RadioGroup.Description>
+                                                    </RadioGroup.Option>
                                                 ))}
                                             </div>
                                         </RadioGroup>
