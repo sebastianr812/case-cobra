@@ -20,6 +20,7 @@ export const DesignPreview = (
     { configuration }: { configuration: Configuration }
 ) => {
     const { user } = useKindeBrowserClient();
+    console.log("FETCH USER ON CLIENT", {user});
     const router = useRouter();
     const { toast } = useToast();
     const { color, model, finish, material } = configuration;
