@@ -67,7 +67,7 @@ export const Navbar = async () => {
                                             size: "sm",
                                             variant: "ghost"
                                         })}
-                                        href="/api/auth/login">
+                                        href="#">
                                         Login
                                     </Link>
                                 </SignInButton>

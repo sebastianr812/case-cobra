@@ -63,9 +63,9 @@ export default function OrderReceived({
                                     {orderId}
                                 </Text>
                             </Column>
-                            <Column>
+                            <Column style={{ marginLeft: 20 }}>
                                 <Text style={global.paragraphWithBold}>
-                                    Order Number
+                                    Order Date
                                 </Text>
                                 <Text style={track.number}>
                                     {orderDate}
