@@ -3,18 +3,18 @@ import { Progress } from "@/components/ui/progress";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { db } from "@/db";
 import { formatPrice } from "@/lib/utils";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { notFound } from "next/navigation";
 import { StatusDropDown } from "./status-dropdown";
+import { currentUser } from "@clerk/nextjs/server";
 
 export default async function Page() {
 
-    const { getUser } = getKindeServerSession();
-    const user = await getUser();
+    const user = await currentUser();
+    const userEmail = user?.emailAddresses[0].emailAddress;
 
     const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
 
-    if (!user || user.email !== ADMIN_EMAIL) {
+    if (!user || userEmail !== ADMIN_EMAIL) {
         return notFound();
     }
 

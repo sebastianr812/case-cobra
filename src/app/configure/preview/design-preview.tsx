@@ -13,14 +13,13 @@ import Confetti from "react-dom-confetti";
 import { createCheckoutSession } from "./actions";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import { LoginModal } from "@/components/login-modal";
+import { useUser } from "@clerk/nextjs";
 
 export const DesignPreview = (
     { configuration }: { configuration: Configuration }
 ) => {
-    const { user } = useKindeBrowserClient();
-    console.log("FETCH USER ON CLIENT", {user});
+    const { user } = useUser();
     const router = useRouter();
     const { toast } = useToast();
     const { color, model, finish, material } = configuration;

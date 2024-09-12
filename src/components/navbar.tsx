@@ -2,15 +2,13 @@ import Link from "next/link";
 import { MaxWidthWrapper } from "./max-width-wrapper";
 import { buttonVariants } from "./ui/button";
 import { ArrowRight } from "lucide-react";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-//TODO: update where we use getUser for kinde to clerk equivilent
-// modify navbar ui to use compoenents from clerk
+import { currentUser } from "@clerk/nextjs/server";
+import { SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
 
 export const Navbar = async () => {
-    const { getUser } = getKindeServerSession();
-    const user = await getUser();
+    const user = await currentUser();
 
-    const isAdmin = user?.email === process.env.ADMIN_EMAIL;
+    const isAdmin = user?.emailAddresses[0].emailAddress === process.env.ADMIN_EMAIL;
 
     return (
         <nav className="sticky z-[100] h-14 inset-x-0 top-0 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
@@ -22,14 +20,16 @@ export const Navbar = async () => {
                     <div className="h-full flex items-center space-x-4">
                         {user ? (
                             <>
-                                <Link
-                                    className={buttonVariants({
-                                        size: "sm",
-                                        variant: "ghost"
-                                    })}
-                                    href="/api/auth/logout">
-                                    Sign out
-                                </Link>
+                                <SignOutButton redirectUrl="/">
+                                    <Link
+                                        className={buttonVariants({
+                                            size: "sm",
+                                            variant: "ghost"
+                                        })}
+                                        href="#">
+                                        Sign out
+                                    </Link>
+                                </SignOutButton>
                                 {isAdmin ? (
                                     <Link
                                         className={buttonVariants({
@@ -51,22 +51,26 @@ export const Navbar = async () => {
                             </>
                         ) : (
                             <>
-                                <Link
-                                    className={buttonVariants({
-                                        size: "sm",
-                                        variant: "ghost"
-                                    })}
-                                    href="/api/auth/register">
-                                    Sign up
-                                </Link>
-                                <Link
-                                    className={buttonVariants({
-                                        size: "sm",
-                                        variant: "ghost"
-                                    })}
-                                    href="/api/auth/login">
-                                    Login
-                                </Link>
+                                <SignUpButton mode="modal">
+                                    <Link
+                                        className={buttonVariants({
+                                            size: "sm",
+                                            variant: "ghost"
+                                        })}
+                                        href="#">
+                                        Sign up
+                                    </Link>
+                                </SignUpButton>
+                                <SignInButton mode="modal">
+                                    <Link
+                                        className={buttonVariants({
+                                            size: "sm",
+                                            variant: "ghost"
+                                        })}
+                                        href="/api/auth/login">
+                                        Login
+                                    </Link>
+                                </SignInButton>
 
                                 <div className="h-8 w-px bg-zinc-200 hidden sm:block" />
                                 <Link
@@ -86,4 +90,3 @@ export const Navbar = async () => {
         </nav >
     );
 }
-

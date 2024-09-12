@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build",packa
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
   },
-"dependencies": {
+  "dependencies": {
+    "@clerk/nextjs": "^5.5.2",
     "@headlessui/react": "^1.7.19",
-    "@kinde-oss/kinde-auth-nextjs": "^2.2.4",
     "@prisma/client": "^5.13.0",
     "@radix-ui/react-aspect-ratio": "^1.0.3",
     "@radix-ui/react-dialog": "^1.0.5",
