@@ -1,7 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog";
 import Image from "next/image";
-import { LoginLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs";
 import { Button, buttonVariants } from "./ui/button";
 import { SignInButton, SignUpButton } from "@clerk/nextjs";
 
